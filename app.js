@@ -6,7 +6,8 @@ const port = 3000;
 let sequelize = require('./db');
 
 let teacher = require('./controllers/teachercontroller');
-let student = require('./controllers/studentcontroller')
+let student = require('./controllers/studentcontroller');
+let user = require('./controllers/usercontroller')
 
 sequelize.sync();
 app.use(require('./middleware/headers'));
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/teacher', teacher);
 app.use('/student', student);
+app.use('/user', user);
 
 app.listen(port, function() {
   console.log('The server is up and running on port 3000');
