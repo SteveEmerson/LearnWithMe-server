@@ -14,4 +14,9 @@ sequelize.authenticate()
   }
 );
 
+User = sequelize.import('./models/user');
+Meeting = sequelize.import('./models/meeting');
+User.hasMany(Meeting);
+Meeting.belongsTo(User);
+
 module.exports = sequelize;

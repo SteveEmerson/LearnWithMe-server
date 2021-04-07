@@ -21,7 +21,7 @@ app.use(express.json());
 // app.use('/teacher', teacher);
 // app.use('/student', student);
 app.use('/user', controllers.User);
-//app.use('/meeting', controllers.Meeting);
+app.use('/meeting', controllers.Meeting);
 
 app.listen(port, function() {
   console.log('The server is up and running on port 3000');
