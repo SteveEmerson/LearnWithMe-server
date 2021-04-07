@@ -4,5 +4,6 @@ module.exports = {
   Teacher: require("./teachercontroller"),
   Student: require("./studentcontroller"),
   MtgNote: require("./mtgnotecontroller"),
-  Goal: require("./goalcontroller")
+  Goal: require("./goalcontroller"),
+  Task: require("./taskcontroller"),
 };

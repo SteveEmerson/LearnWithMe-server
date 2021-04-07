@@ -24,6 +24,7 @@ app.use('/student', controllers.Student);
 app.use('/meeting', controllers.Meeting);
 app.use('/mtg_note', controllers.MtgNote);
 app.use('/goal', controllers.Goal);
+app.use('/task', controllers.Task);
 
 app.listen(port, function() {
   console.log('The server is up and running on port 3000');

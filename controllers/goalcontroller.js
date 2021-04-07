@@ -12,7 +12,6 @@ router.get('/test', function(req, res){
 
 /* ------------------ STUDENT ENDPOINTS ------------------------------*/
 
-
 /******* STUDENT CREATE A GOAL *********/
 router.post('/student_create', validateStudentSession, function(req, res){
   const newGoal = {

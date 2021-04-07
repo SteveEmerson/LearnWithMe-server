@@ -20,6 +20,7 @@ Teacher = sequelize.import('./models/teacher');
 Meeting = sequelize.import('./models/meeting');
 MtgNote = sequelize.import('./models/mtg_note');
 Goal = sequelize.import('./models/goal');
+Task = sequelize.import('./models/task');
 
 Teacher.hasMany(Meeting);
 Meeting.belongsTo(Teacher);
@@ -41,5 +42,14 @@ Goal.belongsTo(Student);
 
 Teacher.hasMany(Goal);
 Goal.belongsTo(Teacher);
+
+Goal.hasMany(Task);
+Task.belongsTo(Goal);
+
+Student.hasMany(Task);
+Task.belongsTo(Student);
+
+Teacher.hasMany(Task);
+Task.belongsTo(Teacher);
 
 module.exports = sequelize;
