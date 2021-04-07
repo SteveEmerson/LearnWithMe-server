@@ -3,5 +3,6 @@ module.exports = {
   Meeting: require("./meetingcontroller"),
   Teacher: require("./teachercontroller"),
   Student: require("./studentcontroller"),
-  MtgNote: require("./mtgnotecontroller")
+  MtgNote: require("./mtgnotecontroller"),
+  Goal: require("./goalcontroller")
 };

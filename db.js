@@ -14,11 +14,12 @@ sequelize.authenticate()
   }
 );
 
-Student = sequelize.import('./models/student')
-Teacher = sequelize.import('./models/teacher')
+Student = sequelize.import('./models/student');
+Teacher = sequelize.import('./models/teacher');
 //User = sequelize.import('./models/user');
 Meeting = sequelize.import('./models/meeting');
-MtgNote = sequelize.import('./models/mtg_note')
+MtgNote = sequelize.import('./models/mtg_note');
+Goal = sequelize.import('./models/goal');
 
 Teacher.hasMany(Meeting);
 Meeting.belongsTo(Teacher);
@@ -34,5 +35,11 @@ MtgNote.belongsTo(Student);
 
 Teacher.hasMany(MtgNote);
 MtgNote.belongsTo(Teacher);
+
+Student.hasMany(Goal);
+Goal.belongsTo(Student);
+
+Teacher.hasMany(Goal);
+Goal.belongsTo(Teacher);
 
 module.exports = sequelize;
