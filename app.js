@@ -18,9 +18,9 @@ app.use(middlewares.CORS);
 app.use(express.json());
 
 
-// app.use('/teacher', teacher);
-// app.use('/student', student);
-app.use('/user', controllers.User);
+app.use('/teacher', controllers.Teacher);
+app.use('/student', controllers.Student);
+//app.use('/user', controllers.User);
 app.use('/meeting', controllers.Meeting);
 
 app.listen(port, function() {

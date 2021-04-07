@@ -12,6 +12,7 @@ const validateStudentSession = (req, res, next) => {
         Student.findOne({
           where: {
             id: decodeToken.id,
+            role: decodeToken.role
           }
         })
         .then(student => {

@@ -14,9 +14,14 @@ sequelize.authenticate()
   }
 );
 
-User = sequelize.import('./models/user');
+Student = sequelize.import('./models/student')
+Teacher = sequelize.import('./models/teacher')
+//User = sequelize.import('./models/user');
 Meeting = sequelize.import('./models/meeting');
-User.hasMany(Meeting);
-Meeting.belongsTo(User);
+
+Teacher.hasMany(Meeting);
+Meeting.belongsTo(Teacher);
+Student.hasMany(Meeting);
+Meeting.belongsTo(Student);
 
 module.exports = sequelize;

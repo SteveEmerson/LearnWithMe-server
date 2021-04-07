@@ -1,11 +1,11 @@
-const User = require("./user");
-const Meeting = require("./meeting");
+// const User = require("./user");
+// const Meeting = require("./meeting");
 
-// Setup Associations
-User.hasMany(Meeting);
-Meeting.belongsTo(User);
+// // Setup Associations
+// User.hasMany(Meeting);
+// Meeting.belongsTo(User);
 
-module.exports = {
-  User,
-  Meeting,
-};
+// module.exports = {
+//   User,
+//   Meeting,
+// };

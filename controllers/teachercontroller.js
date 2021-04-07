@@ -15,13 +15,15 @@ router.post('/register', function(req, res){
     email: req.body.email,
     passwordhash: bcrypt.hashSync(req.body.password, 12),
     name: req.body.name,
-    studentList: []
+    studentList: [],
+    role: "teacher",
+    availability: {}
   };
 
   Teacher.create(newTeacher)
   .then((teacher) => {
     let token = jwt.sign(
-      {id: teacher.id}, 
+      {id: teacher.id, role: teacher.role}, 
       process.env.JWT_SECRET, 
       {expiresIn: 60*60*24}
     )
@@ -52,7 +54,7 @@ router.post('/signin', function(req, res){
       bcrypt.compare(req.body.password, teacher.passwordhash, (err, matches) => {
         if (matches) {
           let token = jwt.sign(
-            {id: teacher.id}, 
+            {id: teacher.id, role: teacher.role}, 
             process.env.JWT_SECRET, 
             {expiresIn: 60*60*24}
           );
@@ -61,6 +63,8 @@ router.post('/signin', function(req, res){
               userId: teacher.id,
               displayName: teacher.name,
               studentList: teacher.studentList,
+              role: teacher.role,
+              availability: teacher.availability,
               sessionToken: token
             }
           );
@@ -83,7 +87,8 @@ router.put('/:id',validateTeacherSession, function(req, res){
     email: req.body.email,
     //passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
     name: req.body.name,
-    studentList: req.body.studentList
+    studentList: req.body.studentList,
+    availability: req.body.availability
   }
 
   const query = {where: {id: req.params.id}}
@@ -97,6 +102,17 @@ router.put('/:id',validateTeacherSession, function(req, res){
       }
     })
     .catch(err => res.status(500).json({error: err}))
+});
+
+/******** RETRIEVE TEACHER BY ID *********/
+router.get('/:id', validateTeacherSession, function(req, res){
+  Teacher.findOne({
+    where:{
+      id: req.params.id
+    }
+  })
+  .then(teacher => res.status(200).json(teacher))
+  .catch(err => res.status(500).json({error: err}))
 });
 
 

@@ -11,7 +11,8 @@ const validateTeacherSession = (req, res, next) => {
       if (!err && decodeToken) {
         Teacher.findOne({
           where: {
-            id: decodeToken.id
+            id: decodeToken.id,
+            role: decodeToken.role
           }
         })
         .then(teacher => {

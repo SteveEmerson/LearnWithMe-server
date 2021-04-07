@@ -17,6 +17,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: true
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    availability: {
+      type: DataTypes.JSONB,
+      allowNull: true
+    },
   })
   return Student;
 }
