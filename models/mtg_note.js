@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-  const Mtg_Note = sequelize.define('mtg_note', {
-    conent: {
+  const MtgNote = sequelize.define('mtg_note', {
+    content: {
       type: DataTypes.STRING(1000),
       allowNull: false
     },
   })
-  return Mtg_Note;
+  return MtgNote;
 }
