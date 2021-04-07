@@ -36,7 +36,8 @@ router.put('/student_update/:id', validateStudentSession, function(req, res){
   const query = {
     where: {
       id: req.params.id,
-      studentId: req.student.id
+      studentId: req.student.id,
+      teacherId: null
     }
   }
 
