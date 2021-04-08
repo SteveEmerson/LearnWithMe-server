@@ -31,6 +31,7 @@ router.post('/register', function(req, res){
       {
         userId: student.id,
         displayName: student.name,
+        role: student.role,
         sessionToken: token
       }
     );
