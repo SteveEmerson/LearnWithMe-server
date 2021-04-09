@@ -88,7 +88,7 @@ router.put('/:id',validateTeacherSession, function(req, res){
     email: req.body.email,
     //passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
     name: req.body.name,
-    studentList: req.body.studentList,
+    studentList: req.body.partnerList,
     availability: req.body.availability
   }
 
@@ -112,10 +112,20 @@ router.get('/:id', validateTeacherSession, function(req, res){
       id: req.params.id
     }
   })
-  .then(teacher => res.status(200).json(teacher))
+  .then(teacher => {
+    console.log("Got to here in teacherfetch")
+    res.status(200).json(teacher)})
   .catch(err => res.status(500).json({error: err}))
 });
 
+/******** RETRIEVE ALL TEACHERS *********/
+router.get('/', validateTeacherSession, function(req, res){
+  Teacher.findAll()
+  .then(teacher => {
+    console.log("TEACHER FETCH")
+    res.status(200).json(teacher)})
+  .catch(err => res.status(500).json({error: err}))
+});
 
 module.exports = router;
 

@@ -88,7 +88,7 @@ router.put('/:id',validateStudentSession, function(req, res){
     email: req.body.email,
     //passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
     name: req.body.name,
-    teacherList: req.body.teacherList,
+    teacherList: req.body.partnerList,
     availability: req.body.availability
   }
 
@@ -113,6 +113,15 @@ router.get('/:id', validateStudentSession, function(req, res){
     }
   })
   .then(student => res.status(200).json(student))
+  .catch(err => res.status(500).json({error: err}))
+});
+
+/******** RETRIEVE ALL STUDENTS *********/
+router.get('/', validateStudentSession, function(req, res){
+  Student.findAll()
+  .then(student => {
+    console.log("STUDENT FETCH")
+    res.status(200).json(student)})
   .catch(err => res.status(500).json({error: err}))
 });
 
