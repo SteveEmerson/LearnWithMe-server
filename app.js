@@ -12,10 +12,10 @@ let sequelize = require('./db');
 const controllers = require('./controllers')
 
 sequelize.sync();
-
-const middlewares = require('./middleware');
-app.use(middlewares.CORS);
 app.use(express.json());
+app.use(require('./middleware/cors'));
+
+
 
 
 app.use('/teacher', controllers.Teacher);

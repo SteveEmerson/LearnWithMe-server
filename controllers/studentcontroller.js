@@ -62,6 +62,7 @@ router.post('/signin', function(req, res){
           res.status(200).json(
             {
               userId: student.id,
+              email: student.email,
               displayName: student.name,
               teacherList: student.teacherList,
               role: student.role,
