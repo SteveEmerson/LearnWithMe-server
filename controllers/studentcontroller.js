@@ -3,7 +3,7 @@ const Student = require('../db').import('../models/student');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const validateStudentSession = require('../middleware/validate-student-session'); 
-
+const validateTeacherSession = require('../middleware/validate-teacher-session'); 
 // Test endpoint
 router.post('/', function(req, res){
   res.send('Got to the student endpoint')
@@ -118,14 +118,13 @@ router.get('/:id', validateStudentSession, function(req, res){
 });
 
 /******** RETRIEVE ALL STUDENTS *********/
-router.get('/', validateStudentSession, function(req, res){
+router.get('/', validateTeacherSession, function(req, res){
   Student.findAll()
   .then(student => {
     console.log("STUDENT FETCH")
     res.status(200).json(student)})
   .catch(err => res.status(500).json({error: err}))
 });
-
 
 module.exports = router;
 

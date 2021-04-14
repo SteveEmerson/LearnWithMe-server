@@ -129,6 +129,8 @@ router.get('/teacher_get', validateTeacherSession, function(req, res){
   .catch(err => res.status(500).json({error: err}))
 });
 
+
+
 /******** TEACHER DELETE A MEETING ********/
 router.delete('/teacher_delete/:id', validateTeacherSession, function(req, res){
   Meeting.destroy({
