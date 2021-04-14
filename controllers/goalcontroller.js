@@ -16,7 +16,6 @@ router.get('/test', function(req, res){
 router.post('/student_create', validateStudentSession, function(req, res){
   const newGoal = {
     description: req.body.description,
-    dateCreated: new Date(Date.now()),
     targetDate: req.body.targetDate, 
     studentId: req.student.id,
     teacherId: null
@@ -89,7 +88,6 @@ router.delete('/student_delete/:id', validateStudentSession, function(req, res){
 router.post('/teacher_create', validateTeacherSession, function(req, res){
   const newGoal = {
     description: req.body.description,
-    dateCreated: new Date(Date.now()),
     targetDate: req.body.targetDate, 
     studentId: req.body.studentId,
     teacherId: req.teacher.id
@@ -124,22 +122,15 @@ router.put('/teacher_update/:id', validateTeacherSession, function(req, res){
   .catch(err => res.status(500).json({error: err}));
 });
 
-/******** RETRIEVE GOAL BY TEACHER ID AND STUDENT ID *********/
-router.get('/teacher_get/:id', validateTeacherSession, function(req, res){
-  Goal.findOne({
+/******** RETRIEVE GOALS BY TEACHER ID *********/
+router.get('/teacher_get', validateTeacherSession, function(req, res){
+  Goal.findAll({
     where:{
       teacherId: req.teacher.id,
-      studentId: req.params.id
     }
   })
-  .then(goal => {
-    if(goal){
-      return res.status(200).json(goal);
-    }else{
-      return res.status(200).send("No mathcing goal")
-    }
-    
-  })
+  .then(goals => res.status(200).json(goals)
+  )
   .catch(err => res.status(500).json({error: err}))
 });
 

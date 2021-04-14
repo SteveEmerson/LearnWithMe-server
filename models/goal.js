@@ -4,10 +4,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    dateCreated: {
-      type: DataTypes.DATEONLY,
-      allowNull: false
-    },
     targetDate: {
       type: DataTypes.DATEONLY,
       allowNull: false
