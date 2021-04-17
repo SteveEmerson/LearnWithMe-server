@@ -111,6 +111,13 @@ router.post('/teacher_create', validateTeacherSession, function(req, res){
   .catch(err => res.status(500).json({error: err}));
 });
 
+/******* TEACHER BULK CREATE *********/
+router.post('/teacher_bulk', validateTeacherSession, function(req, res){
+  Task.bulkCreate(req.body.taskList, { returning: true })
+  .then(taskList => res.status(200).json(taskList))
+  .catch(err => res.status(500).json({error: err}));
+});
+
 /******* TEACHER UPDATE A TASK *********/
 router.put('/teacher_update/:id', validateTeacherSession, function(req, res){
   const updateTask = {
