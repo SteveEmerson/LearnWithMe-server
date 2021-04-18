@@ -2,7 +2,8 @@ const router = require('express').Router();
 const Teacher = require('../db').import('../models/teacher');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const validateTeacherSession = require('../middleware/validate-teacher-session'); 
+const validateTeacherSession = require('../middleware/validate-teacher-session');
+const validateStudentSession = require('../middleware/validate-student-session');
 
 // Test endpoint
 router.get('/teachertest', function(req, res){
@@ -120,7 +121,7 @@ router.get('/:id', validateTeacherSession, function(req, res){
 });
 
 /******** RETRIEVE ALL TEACHERS *********/
-router.get('/', validateTeacherSession, function(req, res){
+router.get('/', validateStudentSession, function(req, res){
   Teacher.findAll()
   .then(teacher => {
     console.log("TEACHER FETCH")
