@@ -27,6 +27,13 @@ router.post('/student_create', validateStudentSession, function(req, res){
   .catch(err => res.status(500).json({error: err}));
 });
 
+/******* STUDENT BULK CREATE *********/
+router.post('/student_bulk', validateStudentSession, function(req, res){
+  Task.bulkCreate(req.body.taskList, { returning: true })
+  .then(taskList => res.status(200).json(taskList))
+  .catch(err => res.status(500).json({error: err}));
+});
+
 /******* STUDENT UPDATE A TASK *********/
 router.put('/student_update/:id', validateStudentSession, function(req, res){
   const updateTask = {
@@ -165,7 +172,7 @@ router.get('/teacher_get/:id', validateTeacherSession, function(req, res){
   .catch(err => res.status(500).json({error: err}))
 });
 
-/******** STUDENT DELETE A TASK ********/
+/******** TEACHER DELETE A TASK ********/
 router.delete('/teacher_delete/:id', validateTeacherSession, function(req, res){
   Task.destroy({
     where: {
