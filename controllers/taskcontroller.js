@@ -45,7 +45,6 @@ router.put('/student_update/:id', validateStudentSession, function(req, res){
     where: {
       id: req.params.id,
       studentId: req.student.id,
-      teacherId: null
     }
   }
 
