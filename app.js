@@ -26,6 +26,6 @@ app.use('/mtg_note', controllers.MtgNote);
 app.use('/goal', controllers.Goal);
 app.use('/task', controllers.Task);
 
-app.listen(port, function() {
+app.listen(process.env.PORT, function() {
   console.log('The server is up and running on port 3000');
 })
