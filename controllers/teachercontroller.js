@@ -88,7 +88,7 @@ router.post('/signin', function(req, res){
 router.put('/:id',validateTeacherSession, function(req, res){
   const updateTeacherInfo = {
     email: req.body.email,
-    //passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
+    passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
     name: req.body.name,
     studentList: req.body.partnerList,
     availability: req.body.availability
