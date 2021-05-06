@@ -84,11 +84,35 @@ router.post('/signin', function(req, res){
   });
 });
 
-/******** TEACHER UPDATE INFO *********/
+/******** TEACHER UPDATE INFO WITH PASSWORD *********/
 router.put('/:id',validateTeacherSession, function(req, res){
   const updateTeacherInfo = {
     email: req.body.email,
-    // passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
+    passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
+    name: req.body.name,
+    role: "teacher",
+    studentList: req.body.partnerList,
+    availability: req.body.availability
+  }
+
+  const query = {where: {id: req.params.id}}
+
+  Teacher.update(updateTeacherInfo, query)
+    .then(update => {
+      if(update[0] === 0){
+        return res.status(200).send('No matching teacher found.')
+      }else{
+        return res.status(200).json({data: update, message: `${update[0]} Teachers updated`})
+      }
+    })
+    .catch(err => res.status(500).json({error: err}))
+});
+
+/******** TEACHER UPDATE INFO W/O PASSWORD *********/
+router.patch('/:id',validateTeacherSession, function(req, res){
+  const updateTeacherInfo = {
+    email: req.body.email,
+    //passwordhash: bcrypt.hashSync(req.body.password, 12),  //v2.0 feature
     name: req.body.name,
     studentList: req.body.partnerList,
     availability: req.body.availability
