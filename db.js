@@ -1,21 +1,21 @@
 const Sequelize = require('sequelize');
 
 //Comment this in to run on Heroku  Lines 4-13
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: 'postgres',
-  dialectOptions:{
-    ssl:{
-      require:true,
-      rejectUnauthorized: false,
-    }
-  }
-});
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//   dialect: 'postgres',
+//   dialectOptions:{
+//     ssl:{
+//       require:true,
+//       rejectUnauthorized: false,
+//     }
+//   }
+// });
 
 // Comment this out to run on Heroku  Lines 15-18
-// const sequelize = new Sequelize('LearnWithMe', 'postgres', 'password', {
-//   host: 'localhost',
-//   dialect: 'postgres'
-// });
+const sequelize = new Sequelize('LearnWithMe', 'postgres', 'password', {
+  host: 'localhost',
+  dialect: 'postgres'
+});
 
 
 sequelize.authenticate()
