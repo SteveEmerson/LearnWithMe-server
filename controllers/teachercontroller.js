@@ -18,7 +18,7 @@ router.post('/register', function(req, res){
     name: req.body.name,
     studentList: [],
     role: "teacher",
-    availability: {}
+    availability: req.body.availability
   };
 
   Teacher.create(newTeacher)
